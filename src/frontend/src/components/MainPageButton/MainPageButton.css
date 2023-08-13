@@ -1,0 +1,17 @@
+.header_logo {
+    background-color: #F4F5F7;
+    display: flex;
+    border: none;
+    outline: none;
+    justify-content: center;
+    margin: 0 10px 0px 40px;
+    padding: 0;
+}
+
+.header_logo:hover {
+    transform: scale(1.2);
+}
+
+img {
+    width: 100px;
+}
