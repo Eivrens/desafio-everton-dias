@@ -1,0 +1,20 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:../database/database.db"
+}
+
+model Lanche {
+  id        Int      @id @default(autoincrement())
+  codigo    String   @unique
+  descricao String
+  tipo      String
+  valor     Decimal
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("cardapio")
+}
