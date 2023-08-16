@@ -1,0 +1,38 @@
+.cart_button {
+    color: #221F52;
+    font-size: 1.7rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    border: none;
+    background: none;
+    position: relative;
+    cursor: pointer;
+    margin-left: 20px;
+}
+
+.cart_button:hover {
+    color: #ED0973;
+}
+
+.cart_status {
+    display: flex;
+    background-color: red;
+    position: absolute;
+    align-items: center;
+    justify-content: center;
+    width: 15px;
+    height: 15px;
+    color: white;
+    right: 0;
+    top: 0;
+    font-size: 12px;
+    font-weight: 700;
+    border-radius: 15px;
+    
+}
+
+.cart_button:hover .cart_status {
+    background-color: #221F52;
+}
