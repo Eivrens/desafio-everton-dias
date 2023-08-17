@@ -67,7 +67,7 @@ async function menuRealizarPedido() {
                 },
             });
             listPedidos.push(objPedido);
-            console.log(listPedidos)
+
         } else if (validacoes.validarPesquisa(pedido) == "id") {
             const objPedido = await prisma.lanche.findUnique({
                 where: {
@@ -99,11 +99,11 @@ async function menuRealizarPedido() {
 
     } while (formaPagamento > 3);
 
-    const arrayUnific = controller.checkoutPedido(listPedidos);
+    const arrayComQtd = controller.checkoutPedido(listPedidos);
 
-    console.log(controller.arrayDoCaixa(arrayUnific));
+    console.log(controller.arrayDoCaixa(arrayComQtd));
     
-    new CaixaDaLanchonete().calcularValorDaCompra(formaPagamento, controller.arrayDoCaixa(arrayUnific));
+    console.log(new CaixaDaLanchonete().calcularValorDaCompra(formaPagamento, controller.arrayDoCaixa(arrayComQtd)));
 
     
 }
@@ -114,3 +114,7 @@ function menuGerenciarCardápio() {
 }
 
 menuInicial();
+
+export default {
+    menuInicial
+}
