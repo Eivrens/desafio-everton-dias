@@ -1,132 +1,76 @@
-# CAIXA DA LANCHONETE
+# Lanchonete da \<DB\>:
+## INSTRUÇÕES E INFORMAÇÕES:
 
-## COMO BAIXAR O CÓDIGO E SUBMETER MINHA SOLUÇÃO?
-Para completar a etapa do desafio você terá que baixar a estrutura do código aqui na Azure, resolver o desafio e entregá-lo no repositório no seu github.
+### BACK-END:
+#### COMO INSTALAR:
 
-### BAIXANDO A ESTRUTURA
-Para baixar a estrutura no formato zip, basta clicar neste [link](https://dev.azure.com/db-tecnologia/371ab069-cd1e-4ede-8ae5-fa54dd981c56/_apis/git/repositories/a3a8fe92-b324-4d6b-abbd-1953e46fb075/items?path=/&versionDescriptor%5BversionOptions%5D=0&versionDescriptor%5BversionType%5D=0&versionDescriptor%5Bversion%5D=main&resolveLfs=true&%24format=zip&api-version=5.0&download=true).
-
-
-### ENTREGANDO O DESAFIO
-Após resolver o desafio e validá-lo com os testes (mais detalhes nos tópicos abaixo), você terá que criar um repositório no [Github](https://github.com/) com o nome de `desafio-$seunome-$sobrenome` (substitua os nomes com $ pelo seu próprio nome e sobrenome). Deṕos disso, você pode enviar o link do seu repositório para que possamos validá-lo para o e-mail: `start@dbserver.com.br`
-
-Se você ainda não teve contato com essas ferramentas, não tem problema, separamos um material para lhe ajudar nessa etapa: [Como usar Git e Github na prática](https://www.youtube.com/watch?v=UBAX-13g8OM).
-
-
-## O DESAFIO
-Olá! Você foi contratado para automatizar o caixa da Lanchonete da DB.
-Sua missão será construir a lógica que calcula o valor de uma compra de acordo com o cardápio, regras e descontos da Lanchonete.
-
-### CARDÁPIO
-
-  | codigo    | descrição                   | valor   |
-  |-----------|-----------------------------|---------|
-  | cafe      | Café                        | R$ 3,00 |
-  | chantily  | Chantily (extra do Café)    | R$ 1,50 |
-  | suco      | Suco Natural                | R$ 6,20 |
-  | sanduiche | Sanduíche                   | R$ 6,50 |
-  | queijo    | Queijo (extra do Sanduíche) | R$ 2,00 |
-  | salgado   | Salgado                     | R$ 7,25 |
-  | combo1    | 1 Suco e 1 Sanduíche        | R$ 9,50 |
-  | combo2    | 1 Café e 1 Sanduíche        | R$ 7,50 |
-
-
-### FORMAS DE PAGAMENTO
-Atualmente a Lanchonete aceita as seguintes formas de pagamento:
- - dinheiro
- - debito
- - credito
-
-O sistema deve receber essa informação como string, utilizando a grafia exatamente igual aos exemplos acima.
-
-### DESCONTOS E TAXAS
- - Pagamento em dinheiro tem 5% de desconto
- - Pagamento a crédito tem acréscimo de 3% no valor total
-
-### OUTRAS REGRAS
-
-- Caso item extra seja informado num pedido que não tenha o respectivo item principal, apresentar mensagem "Item extra não pode ser pedido sem o principal".
-- Combos não são considerados como item principal.
-- É possível pedir mais de um item extra sem precisar de mais de um principal.
-- Se não forem pedidos itens, apresentar mensagem "Não há itens no carrinho de compra!"
-- Se a quantidade de itens for zero, apresentar mensagem "Quantidade inválida!".
-- Se o código do item não existir, apresentar mensagem "Item inválido!"
-- Se a forma de pagamento não existir, apresentar mensagem "Forma de pagamento inválida!"
-
-### O CÓDIGO
-Você está recebendo uma estrutura básica para desenvolver a lógica do caixa. O arquivo principal está localizado dentro da pasta `src` e se chama `caixa-da-lanchonete.js`. Você pode desenvolver a sua lógica criando outros arquivos, métodos e até mesmo outras classes, porém o resultado deve poder ser obtido através do método `calcularValorDaCompra`.
-
-> ALERTA:
-> É importante que a estrutura básica descrita acima não seja alterada, incluindo nome e parâmetros do método. Iremos validar sua solução através destes, assim como você pode validar através dos cenários de testes já implementados em `src/caixa-da-lanchonete.test.js`.
-
-### INSTALANDO E RODANDO NA SUA MÁQUINA
-1. Instalar o [Node](https://nodejs.org/en/)
-2. Instalar dependencias do projeto com o seguinte comando:
+- Clone o repositório do GitHub numa pasta de preferência.
+- Abra o CMD ou PowerShell no diretório escolhido e digite:
 ```bash
-npm install
+$    git clone https://github.com/Eivrens/desafio-everton-dias.git
 ```
-
-### VALIDANDO A SOLUÇÃO
-Junto com a estrutura básica você está recebendo alguns cenários de testes para auxiliar na validação da sua solução. Recomendamos que você crie mais casos de teste para aumentar a confiabilidade da sua solução.
-Para testar sua solução com os cenários já criados, basta rodar o seguinte comando:
+- Após finalizado acesse a pasta recém baixada `desafio-everton-dias` ou ainda com o CMD aberto, digite:
 ```bash
-npm test
+$    cd \desafio-everton-dias\src
 ```
+- Dentro do diretório src do projeto execute os seguintes comandos para instalar as dependências do Node.js:
+```bash
+$    npm install
+```
+- Por fim, o projeto foi realizado com ORM, ou seja, possui um banco de dados simples para guardar informações iniciais e futuras. Então, execute o comando para executar o client do ORM:
+```bash
+$    npx prisma generate
+```
+- E Após a seguinte mensagem, já pode ser executado: `Generated Prisma Client (5.1.1 | library)...`.
 
-Para saber mais consulte a [Documentação do Jest](https://jestjs.io/pt-BR/docs/getting-started).
 
-### INPUTS
-O método `calcularValorDaCompra` recebe dois parâmetros, `formaDePagamento` e `itens`, sendo o primeiro uma string com os possíveis valores válidos: `debito`, `credito` e `dinheiro`. O segundo parâmetro contém uma array dos itens que serão comprados. Cada item é uma string contendo o código do item e a quantidade do mesmo separados por uma vírgula.
-EXEMPLO:
-```js
-['cafe,1','chantily,1']
-```
 
-### OUPUTS
-O retorno do método `calcularValorDaCompra` deve ser sempre uma string e conteúdo dela pode ser ou o valor total da compra ou uma mensagem de erro conforme as regras descritas anteriormente. O valor da compra deve ser formatado com `R$` e decimais separados por vírgula.
+#### COMO EXECUTAR:
 
-Para padronizar a quantidade de decimais, utilize o método `toFixed` do JavaScript. Esse método serve o propósito deste desafio, porém na vida real a regra de arredondamento deve ser conferida! Para saber mais consulte a [Documentação do Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toFixed).
-EXEMPLO:
-```js
-// exemplo de saída do valor da compra
-"R$ 6,00"
+- Ainda no CMD, Windows ou IDE, no diretório `...\desafio-everton-dias\src`, execute o comando:
+```bash
+$    npm start
+```
+- Pronto! Projeto em execução. Recomendo expandir a página de console pois toda interação é no mesmo.
 
-// exemplo de saída de erro
-"Forma de pagamento inválida!"
-```
 
-### EXEMPLOS
 
-EXEMPLO 1: Compra de chantily sem café.
-```js
-new CaixaDaLanchonete()
-  .calcularValorDaCompra('debito', ['chantily,1']);
+### BANCO DE DADOS:
+Optei pelo ORM mais simples, completo, intuitivo que conheço e que é compatível com SQLite, devido ao tamanho ainda pequeno do projeto. Segue algumas interações:
+- O banco de dados tem uma interface gerenciável, em que pode alterar valores, adicionar, remover, visualizar. Um verdadeiro CRUD. Para acessar, recomendo abrir um novo terminal na scr do backend e digitar:
+```bash
+$    npx prisma studio
 ```
-O resultado esperado deve ser:
-```
-"Item extra não pode ser pedido sem o principal"
-```
+- Os diretórios relevantes do banco de dados no projeto:
 
-<br/>
+    Migrations: `...\desafio-everton-dias\src\prisma\migrations`.
 
-EXEMPLO 2: Compra de café com chantily.
-```js
-new CaixaDaLanchonete()
-  .calcularValorDaCompra('debito', ['cafe,1','chantily,1']);
-```
-O resultado esperado deve ser:
-```
-"R$ 4,50"
-```
+    Schemas/Models: `...\desafio-everton-dias\src\prisma\schema.prisma`.
 
-<br/>
+    Database: `...\desafio-everton-dias\src\database\database.db`.
 
-EXEMPLO 3: Compra de combo e dois cafés
-```js
-new CaixaDaLanchonete()
-  .calcularValorDaCompra('credito', ['combo1,1','cafe,2']);
-```
-O resultado esperado deve ser:
-```
-"R$ 15,96"
-```
+### FRONT-END:
+Ainda não tá nem perto de estar finalizado. Porém todo escopo e praparação de protótipos, logo, icones, paleta de cores foram pensados e inspirados na <db> e em seu [site](https://db.tec.br). Será muito interessante e divertido progredir com o frontend como projeto pessoal, até porque foi minha primeira investida com React.js.
+
+#### COMO EXECUTAR:
+- Instale as dependências Node.js do Frontend
+- Vá ao diretório scr da pasta front e execute o `$ npm i`.
+- Com o backend rodando, acesse a porta local indicada.
+
+##### OBS.: Recomendo ir para a branch do repositório, no terminal digite: `git checkout fullstack`, nela vai ter as dependências e adiante, só seguir com a preparação para executar.
+
+Como citado, está bem cru, porém promissor. [Segue o link](https://drive.google.com/drive/folders/1tBJNOLPkkfEaRwQpHWtbmSs41HCkBBRf?usp=sharing) do logo (inpiração em comida e na \<db\>.
+
+###### Qualquer coisa estou a disposição! Abraços!
+
+# DEPENDENCIAS:
+## BACKEND e DATABASE:
+- [Node.js](https://nodejs.org/en/docs): `20.5.0`
+- [@prisma/client](https://www.prisma.io/docs): `5.1.1`
+- [express](https://www.npmjs.com/package/express): `4.18.2`
+- [Nodemon](https://www.npmjs.com/package/nodemon): `3.0.1`
+
+## FRONTEND:
+- [React.js](https://legacy.reactjs.org/docs/getting-started.html): `18.1.0`
+- [React-Icons](https://react-icons.github.io/react-icons/): `4.10.1`
+- [Axios](https://axios-http.com/docs/intro): `1.4.0`
